@@ -34,8 +34,15 @@ document.getElementById('paket-kursus').addEventListener('submit', function(e){
     const kursus = new Kursus(paket, jenis, harga);
     const ui = new UI();
 
-    ui.simpanData(kursus);
-    ui.clearFields();
+    if(paket==='' || jenis==='' || harga===''){
+        alert('Mohon isi data yg kosong');
+    }else{
+        ui.simpanData(kursus);
+        alert('Terimakasih data berhasil disimpan');
+        ui.clearFields();
+
+    }
+
 
     e.preventDefault();
 });
