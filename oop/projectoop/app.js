@@ -20,6 +20,12 @@ class UI{
         list.appendChild(row);
     }
 
+    deleteKursus(target){
+        if (target.className === 'delete'){
+            target.parentElement.parentElement.remove();
+        }
+    }
+
     clearFields(){
         document.getElementById('paket').value = '';
         document.getElementById('jenis').value = '';
@@ -49,6 +55,15 @@ class paketKursus{
         belajar.push(kursus);
         localStorage.setItem('belajar', JSON.stringify(belajar));
     }
+    static deleteData(harga){
+        const belajar = paketKursus.getPaket();
+        belajar.forEach(function(kursus, index){
+            if (kursus.harga === harga){
+                belajar.splice(index, 1);
+            }
+        });
+        localStorage.setItem('belajar', JSON.stringify(belajar));
+    }
 }
 
 document.addEventListener('DOMContentLoaded', paketKursus.tampilKursus);
@@ -74,3 +89,12 @@ document.getElementById('paket-kursus').addEventListener('submit', function(e){
 
     e.preventDefault();
 });
+
+document.getElementById('data-paket').addEventListener('click', function(e){
+    const ui = new UI();
+    ui.deleteKursus(e.target);
+
+    paketKursus.deleteData(e.target.parentElement.previousElementSibling.textContent);
+    alert('Data telah dihapus');
+    e.preventDefault();
+})
