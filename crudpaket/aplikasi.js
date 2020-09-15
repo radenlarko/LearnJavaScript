@@ -53,7 +53,8 @@ const UICtrl = (function(){
         itemList : '#item-list',
         addBtn : '.add-btn',
         itemNamaPaket : '#nama-paket',
-        itemHargaPaket : '#harga-paket'
+        itemHargaPaket : '#harga-paket',
+        totalHarga : '.total-harga'
     }
     return {
         populateItemList : function(items){
@@ -90,6 +91,9 @@ const UICtrl = (function(){
         clearInput: function(){
             document.querySelector(UISelector.itemNamaPaket).value = '';
             document.querySelector(UISelector.itemHargaPaket).value = '';
+        },
+        showTotalHarga : function(totalHarga){
+            document.querySelector(UISelector.totalHarga).textContent = totalHarga;
         },
         hideList: function(){
             document.querySelector(UISelector.itemList).style.display = 'none';
